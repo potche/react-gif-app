@@ -33,6 +33,7 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    'react/props-type': 'off',
     'react/react-in-jsx-scope': 'off',
   },
 };

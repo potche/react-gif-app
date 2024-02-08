@@ -1,20 +1,26 @@
 import { useState } from 'react';
+import { type INewCategory } from '../interfaces';
 
-export function AddCategory(): JSX.Element {
-  const [inputValue, setInputValue] = useState('One Punch');
+export const AddCategory: React.FC<INewCategory> = ({ onNewCategory }) => {
+  const [inputValue, setInputValue] = useState('');
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value)
-  }
+    setInputValue(event.target.value);
+  };
 
-  const onSubmit= (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log({event})
-    console.log({inputValue})
-  }
+    console.log({ inputValue });
+
+    const category = inputValue.trim().toLowerCase();
+    if (category.length > 1) {
+      onNewCategory(category);
+      setInputValue('');
+    }
+  };
 
   return (
-    <form onSubmit={ (event) => onSubmit(event)}>
+    <form onSubmit={(event) => onSubmit(event)}>
       <input
         type="text"
         placeholder="Buscar Gifs"
@@ -23,6 +29,6 @@ export function AddCategory(): JSX.Element {
       />
     </form>
   );
-}
+};
 
 export default AddCategory;
