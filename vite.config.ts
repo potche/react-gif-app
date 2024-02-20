@@ -12,5 +12,18 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/setupTest.ts'],
     pool: 'forks',
+    coverage: {
+      enabled: true,
+      provider: 'istanbul',
+      reporter: ['text', 'html'],
+      include: ['src/**/*'],
+      reportOnFailure: true,
+      thresholds: {
+        statements: 100,
+        branches: 100,
+        functions: 100,
+        lines: 100,
+      },
+    },
   },
 });

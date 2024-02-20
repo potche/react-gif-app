@@ -14,6 +14,6 @@ export const getGifs = async (tag: string): Promise<IGifData[]> => {
     title: gif.title,
     url: gif.images.downsized_medium.url,
   }));
-  console.log({ gifData });
+
   return gifData;
 };
